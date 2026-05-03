@@ -65,7 +65,8 @@ def load_xml_file(filename):
             books.append({
                 "title": book.find("title").text,
                 "author": book.find("author").text,
-                "year": int(book.find("year").text)
+                "year": int(book.find("year").text),
+                "available": book.find("available").text
             })
 
         return books
@@ -92,7 +93,8 @@ def display_books(books):
     print("-" * 40)
 
     for book in books:
-        print(f"{book['title']} by {book['author']} ({book['year']})")
+        print(f"{book['title']} by {book['author']} ({book['year']})"
+              f" - Available: {book['available']}")
 
 
 def find_book(books, title):
@@ -137,7 +139,8 @@ def prompt_user_search(books):
         result = find_book(books, title)
 
         if result:
-            print(f"Found: {result['title']} by {result['author']} ({result['year']})")
+            print(f"Found: {result['title']} by {result['author']} "
+                  f"({result['year']}) - Available: {result['available']}")
         else:
             print(f"{title} - Title not found.")
 
